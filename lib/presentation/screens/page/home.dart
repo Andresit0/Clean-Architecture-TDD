@@ -32,7 +32,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     ref.read(getCriptocurrenciesProvider.notifier).loadNextCriptocurrencyData();
   }
 
-  Widget criptoCurrencyList(List<CriptocurrencyEntity> criptoCurrrencies) {
+  Widget criptoCurrencyList(CriptoCurrencyListState criptoCurrrencies) {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -45,19 +45,22 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           SingleChildScrollView(
             child: Column(
               children: [
-                criptoCurrrencies.isEmpty
-                    ? const CircularProgressIndicator()
-                    : table(
-                        titleColumn: ['NAME', 'SYMBOL', 'PRICE'],
-                        bodyColumn: [
-                          for (var criptocurrency in criptoCurrrencies)
-                            [
-                              criptocurrency.name,
-                              criptocurrency.symbol,
-                              criptocurrency.price.toString()
+                criptoCurrrencies.httpError != null
+                    ? Text(criptoCurrrencies.httpError!)
+                    : criptoCurrrencies.isLoading
+                        ? const CircularProgressIndicator()
+                        : table(
+                            titleColumn: ['NAME', 'SYMBOL', 'PRICE'],
+                            bodyColumn: [
+                              for (var criptocurrency
+                                  in criptoCurrrencies.listCriptoCurrency!)
+                                [
+                                  criptocurrency.name,
+                                  criptocurrency.symbol,
+                                  criptocurrency.price.toString()
+                                ],
                             ],
-                        ],
-                      ),
+                          ),
               ],
             ),
           ),

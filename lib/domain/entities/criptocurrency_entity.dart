@@ -1,3 +1,39 @@
+class CriptoCurrencyListState {
+  final bool isLoading;
+  final List<CriptocurrencyEntity>? listCriptoCurrency;
+  final String? httpError;
+
+  const CriptoCurrencyListState({
+    this.isLoading = false,
+    this.listCriptoCurrency,
+    this.httpError,
+  });
+
+  CriptoCurrencyListState copyWith(
+      {bool? isLoading,
+      List<CriptocurrencyEntity>? listCriptoCurrency,
+      String? httpError}) {
+    return CriptoCurrencyListState(
+      isLoading: isLoading ?? this.isLoading,
+      listCriptoCurrency: listCriptoCurrency ?? this.listCriptoCurrency,
+      httpError: httpError ?? this.httpError,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is CriptoCurrencyListState &&
+          runtimeType == other.runtimeType &&
+          isLoading == other.isLoading &&
+          listCriptoCurrency == other.listCriptoCurrency &&
+          httpError == other.httpError;
+
+  @override
+  int get hashCode =>
+      isLoading.hashCode ^ listCriptoCurrency.hashCode ^ httpError.hashCode;
+}
+
 class CriptocurrencyEntity {
   final String name;
   final String symbol;

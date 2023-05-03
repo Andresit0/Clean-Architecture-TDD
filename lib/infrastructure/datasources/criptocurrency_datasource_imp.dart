@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 
 class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
   @override
-  Future<List<CriptocurrencyEntity>> getCriptocurrencies(
+  Future<CriptoCurrencyListState> getCriptocurrencies(
       List<String> currencyIdsList) async {
     var uri = Uri(
       scheme: 'https',
@@ -19,30 +19,24 @@ class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
         'ids': currencyIdsList.join(','),
       },
     );
-    var response = await get(uri);
-    if (response.statusCode == 200) {
-      final List result = jsonDecode(response.body);
-      return result
-          .map((json) => CriptocurrencyMapper.criptocurrencyToEntity(
-              CriptocurrencyCoingeckoModel.fromJson(json)))
-          .toList();
-    } else {
-      throw Exception(
-          'ERROR: getCritocurrency lib/repository/repositories.dart ${response.body}');
+
+    try {
+      var response = await get(uri);
+      if (response.statusCode == 200) {
+        final List result = jsonDecode(response.body);
+        return CriptoCurrencyListState(
+          listCriptoCurrency: result
+              .map((json) => CriptocurrencyMapper.criptocurrencyToEntity(
+                  CriptocurrencyCoingeckoModel.fromJson(json)))
+              .toList(),
+        );
+      } else {
+        throw Exception(
+            'ERROR: getCritocurrency lib/repository/repositories.dart ${response.body}');
+      }
+    } catch (e, stacktrace) {
+      print(stacktrace);
+      return CriptoCurrencyListState(httpError: e.toString());
     }
   }
 }
-
-
-
- // var response = await get(uri);
-    // if (response.statusCode == 200) {
-    //   final List result = jsonDecode(response.body);
-    //   return result
-    //       .map((json) => CriptocurrencyMapper.criptocurrencyToEntity(
-    //           CriptocurrencyCoingeckoModel.fromJson(json)))
-    //       .toList();
-    // } else {
-    //   throw Exception(
-    //       'ERROR: getCritocurrency lib/repository/repositories.dart ${response.body}');
-    // }

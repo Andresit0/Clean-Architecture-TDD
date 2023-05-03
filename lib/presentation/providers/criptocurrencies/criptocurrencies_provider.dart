@@ -1,7 +1,7 @@
 part of presentation.providers.criptocurrencies;
 
 final getCriptocurrenciesProvider =
-    StateNotifierProvider<CriptocurrenciesNotifier, List<CriptocurrencyEntity>>(
+    StateNotifierProvider<CriptocurrenciesNotifier, CriptoCurrencyListState>(
         (ref) {
   final getCriptocurrencies =
       ref.watch(criptocurrenciesRepositoryProvider).getCriptocurrency;

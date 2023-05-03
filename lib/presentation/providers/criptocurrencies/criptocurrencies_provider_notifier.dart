@@ -1,21 +1,21 @@
 part of presentation.providers.criptocurrencies;
 
-class CriptocurrenciesNotifier
-    extends StateNotifier<List<CriptocurrencyEntity>> {
+class CriptocurrenciesNotifier extends StateNotifier<CriptoCurrencyListState> {
   bool isLoading = false;
   CriptocurrencyCallback getCriptocurrencies;
 
   CriptocurrenciesNotifier({
     required this.getCriptocurrencies,
-  }) : super([]);
+  }) : super(const CriptoCurrencyListState(isLoading: true));
 
   Future<void> loadNextCriptocurrencyData(
       {List<String> currencyIDs =
           CustomList.criptocurrenciesMostKnowledge}) async {
     if (isLoading) return;
     isLoading = true;
-    var newCriptocurrenciesList = getCriptocurrencies(currencyIDs);
-    state = await newCriptocurrenciesList;
+    CriptoCurrencyListState newCriptocurrenciesList =
+        await getCriptocurrencies(currencyIDs);
+    state = newCriptocurrenciesList;
     await Future.delayed(const Duration(seconds: 5));
     isLoading = false;
   }

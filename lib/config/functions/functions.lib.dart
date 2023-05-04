@@ -1,4 +1,4 @@
-library functions.packages;
+library config.functions.packages;
 
 import 'dart:convert';
 

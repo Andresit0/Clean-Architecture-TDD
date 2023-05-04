@@ -1,4 +1,4 @@
-part of functions.packages;
+part of config.functions.packages;
 
 class CustomRequest {
   get({required Uri uri, Map<String, String>? headers}) async {

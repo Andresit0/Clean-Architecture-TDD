@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'config/constants/global/router.dart';
-import 'config/constants/global/theme_app.dart';
+import 'config/variables/variable.lib.dart';
 
 void main() => runApp(const ProviderScope(child: MyApp()));
 
@@ -11,9 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: appRouter,
+      routerConfig: CustomVariables.constRoute.appRouter,
       debugShowCheckedModeBanner: false,
-      theme: ThemeApp().getTheme(),
+      theme: CustomConstThemeApp().getTheme(),
     );
   }
 }

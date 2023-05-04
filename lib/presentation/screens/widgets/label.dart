@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/constants/global/colors.dart';
-import '../../../config/constants/global/letter_style.dart';
-import '../../../config/constants/global/padding.dart';
+import '../../../config/variables/variable.lib.dart';
 
 Widget header({required String text}) {
   return Container(
     alignment: Alignment.center,
-    color: CustomColor.black,
-    child: Text(text, style: LetterStyle.title, maxLines: 1),
+    color: CustomVariables.constColors.black,
+    child:
+        Text(text, style: CustomVariables.constLetterStyle.title, maxLines: 1),
   );
 }
 
 Widget labelPrincipal({required String text}) {
   return Expanded(
     child: Container(
-      color: CustomColor.black,
-      padding:
-          const EdgeInsets.symmetric(horizontal: CustomPadding.smallPadding),
+      color: CustomVariables.constColors.black,
+      padding: EdgeInsets.symmetric(
+          horizontal: CustomVariables.constPadding.smallPadding),
       child: Text(
         text,
-        style: LetterStyle.subtitle.copyWith(color: CustomColor.white),
+        style: CustomVariables.constLetterStyle.subtitle
+            .copyWith(color: CustomVariables.constColors.white),
         maxLines: 1,
       ),
     ),
@@ -30,10 +30,11 @@ Widget labelPrincipal({required String text}) {
 Widget labelSecundary({required String text}) {
   return Expanded(
     child: Container(
-      color: CustomColor.gray4,
-      padding:
-          const EdgeInsets.symmetric(horizontal: CustomPadding.smallPadding),
-      child: Text(text, style: LetterStyle.tableBody, maxLines: 1),
+      color: CustomVariables.constColors.gray4,
+      padding: EdgeInsets.symmetric(
+          horizontal: CustomVariables.constPadding.smallPadding),
+      child: Text(text,
+          style: CustomVariables.constLetterStyle.tableBody, maxLines: 1),
     ),
   );
 }

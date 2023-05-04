@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../config/constants/global/colors.dart';
+import '../../../config/variables/variable.lib.dart';
 import '../../../domain/entities/criptocurrency_entity.dart';
-import '../../../config/dynamic/criptocurrencies/list.dart';
 import '../../providers/criptocurrencies/criptocurrencies.dart';
 import '../widgets/label.dart';
 import '../widgets/table.dart';
@@ -73,7 +72,9 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     while (true) {
       await Future.delayed(const Duration(seconds: 30)).then((value) => ref
           .read(getCriptocurrenciesProvider.notifier)
-          .loadNextCriptocurrencyData(currencyIDs: criptocurrencies));
+          .loadNextCriptocurrencyData(
+              currencyIDs:
+                  CustomVariables.dynCriptocurrencyList.criptocurrencies));
     }
   }
 
@@ -82,7 +83,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     updateCriptoCurrencyList(context);
     final criptoCurrrencies = ref.watch(getCriptocurrenciesProvider);
     return Scaffold(
-      backgroundColor: CustomColor.appBackground,
+      backgroundColor: CustomVariables.constColors.appBackground,
       body: criptoCurrencyList(criptoCurrrencies),
     );
   }

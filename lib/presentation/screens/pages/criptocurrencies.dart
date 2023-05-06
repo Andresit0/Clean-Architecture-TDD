@@ -2,12 +2,10 @@ part of presentation.screens;
 
 class CriptocurrenciesScreen extends StatelessWidget {
   final CriptoCurrencyListState criptocurrrencies;
-  final Function updateCriptoCurrencyList;
   static const name = 'criptocurrencies-screen';
   const CriptocurrenciesScreen({
     super.key,
     required this.criptocurrrencies,
-    required this.updateCriptoCurrencyList,
   });
   Widget criptoCurrencyList() {
     return Padding(
@@ -48,7 +46,6 @@ class CriptocurrenciesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    updateCriptoCurrencyList(context);
     return Scaffold(
       backgroundColor: CustomVariables.constColors.appBackground,
       body: criptoCurrencyList(),

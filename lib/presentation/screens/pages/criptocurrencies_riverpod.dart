@@ -1,14 +1,16 @@
-part of presentation.controllers;
+part of presentation.screens;
 
-class CriptocurrenciesRiverpodPage extends ConsumerStatefulWidget {
-  const CriptocurrenciesRiverpodPage({super.key});
+class CriptocurrenciesRiverpodPageCtrl extends ConsumerStatefulWidget {
+  static const name = 'criptocurrencies_riverpod';
+  static const path = '/home/criptocurrencies_riverpod';
+  const CriptocurrenciesRiverpodPageCtrl({super.key});
   @override
   CriptocurrenciesRiverpodState createState() =>
       CriptocurrenciesRiverpodState();
 }
 
 class CriptocurrenciesRiverpodState
-    extends ConsumerState<CriptocurrenciesRiverpodPage> {
+    extends ConsumerState<CriptocurrenciesRiverpodPageCtrl> {
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,7 @@ class CriptocurrenciesRiverpodState
     final criptoCurrrencies = ref.watch(getCriptocurrenciesProvider);
     return Scaffold(
       backgroundColor: CustomVariables.constColors.appBackground,
-      body: CriptocurrenciesScreen(criptocurrrencies: criptoCurrrencies),
+      body: CriptocurrenciesView(criptocurrrencies: criptoCurrrencies),
     );
   }
 }

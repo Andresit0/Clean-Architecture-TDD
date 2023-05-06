@@ -1,9 +1,8 @@
 part of presentation.screens;
 
-class CriptocurrenciesScreen extends StatelessWidget {
+class CriptocurrenciesView extends StatelessWidget {
   final CriptoCurrencyListState criptocurrrencies;
-  static const name = 'criptocurrencies-screen';
-  const CriptocurrenciesScreen({
+  const CriptocurrenciesView({
     super.key,
     required this.criptocurrrencies,
   });
@@ -47,6 +46,10 @@ class CriptocurrenciesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CustomVariables.constColors.appBackground,
+        leading: const BackButton(color: Colors.white),
+      ),
       backgroundColor: CustomVariables.constColors.appBackground,
       body: criptoCurrencyList(),
     );

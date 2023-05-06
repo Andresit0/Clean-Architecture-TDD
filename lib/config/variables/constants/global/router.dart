@@ -10,7 +10,7 @@ class CustomConstRoute {
       ),
       GoRoute(
         path: HomePage.path,
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => HomePage(),
         routes: [
           GoRoute(
             path: CriptocurrenciesRiverpodPageCtrl.name,

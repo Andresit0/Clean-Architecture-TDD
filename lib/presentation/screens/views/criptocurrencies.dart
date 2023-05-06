@@ -6,7 +6,7 @@ class CriptocurrenciesView extends StatelessWidget {
     super.key,
     required this.criptocurrrencies,
   });
-  Widget criptoCurrencyList() {
+  Widget criptoCurrencyList(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
@@ -14,7 +14,8 @@ class CriptocurrenciesView extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: header(
-                text: 'CRYPTOCURRENCY',
+                text:
+                    localization.AppLocalizations.of(context)!.criptocurrencies,
               )),
           SingleChildScrollView(
             child: Column(
@@ -24,7 +25,11 @@ class CriptocurrenciesView extends StatelessWidget {
                     : criptocurrrencies.isLoading
                         ? const CircularProgressIndicator()
                         : table(
-                            titleColumn: ['NAME', 'SYMBOL', 'PRICE'],
+                            titleColumn: [
+                              localization.AppLocalizations.of(context)!.name,
+                              localization.AppLocalizations.of(context)!.symbol,
+                              localization.AppLocalizations.of(context)!.price,
+                            ],
                             bodyColumn: [
                               for (var criptocurrency
                                   in criptocurrrencies.listCriptoCurrency!)
@@ -51,7 +56,7 @@ class CriptocurrenciesView extends StatelessWidget {
         leading: const BackButton(color: Colors.white),
       ),
       backgroundColor: CustomVariables.constColors.appBackground,
-      body: criptoCurrencyList(),
+      body: criptoCurrencyList(context),
     );
   }
 }

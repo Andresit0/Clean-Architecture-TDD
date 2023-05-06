@@ -1,0 +1,9 @@
+{
+    "criptocurrencies": "Criptocurrencies",
+    "@criptocurrencies": {
+        "description": "Criptocurrencies List"
+    },
+    "name": "Name",
+    "price": "Price",
+    "symbol": "Symbol"
+}

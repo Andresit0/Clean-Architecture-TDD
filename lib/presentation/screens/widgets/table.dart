@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'label.dart';
+part of presentation.screens;
 
 Widget table({
   required List<String> titleColumn,

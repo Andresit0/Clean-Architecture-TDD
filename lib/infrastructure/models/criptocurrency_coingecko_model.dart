@@ -1,8 +1,4 @@
-// To parse this JSON data, do
-//
-//     final criptoCurrencyModel = criptoCurrencyModelFromJson(jsonString);
-
-import 'dart:convert';
+part of infrastructure.models;
 
 CriptocurrencyCoingeckoModel criptoCurrencyModelFromJson(String str) =>
     CriptocurrencyCoingeckoModel.fromJson(json.decode(str));

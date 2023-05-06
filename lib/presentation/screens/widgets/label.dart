@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../config/variables/variable.lib.dart';
+part of presentation.screens;
 
 Widget header({required String text}) {
   return Container(

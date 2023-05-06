@@ -1,3 +1,5 @@
+part of domain.entities;
+
 class CriptoCurrencyListState {
   final bool isLoading;
   final List<CriptocurrencyEntity>? listCriptoCurrency;

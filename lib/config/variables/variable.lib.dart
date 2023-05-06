@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import '../../presentation/screens/page/home.dart';
+import '../../presentation/screens/screen.lib.dart';
 
 part 'constants/criptocurrencies/list.dart';
 part 'constants/global/colors.dart';

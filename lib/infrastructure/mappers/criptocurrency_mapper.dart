@@ -1,5 +1,4 @@
-import '../../domain/entities/criptocurrency_entity.dart';
-import '../models/criptocurrency_coingecko_model.dart';
+part of infrastructure.mappers;
 
 class CriptocurrencyMapper {
   static CriptocurrencyEntity criptocurrencyToEntity(

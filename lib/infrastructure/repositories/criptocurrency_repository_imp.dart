@@ -1,7 +1,4 @@
-import 'package:clean_architecture/domain/entities/criptocurrency_entity.dart';
-import 'package:clean_architecture/domain/repositories/criptocurrency_repository.dart';
-
-import '../../domain/datasources/criptocurrency_datasource.dart';
+part of infrastructure.repositories;
 
 class CriptocurrencyRepositoryImp extends CriptocurrencyRepository {
   final CriptocurrencyDatasource datasource;

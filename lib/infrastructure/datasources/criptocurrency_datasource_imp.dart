@@ -1,10 +1,4 @@
-import 'package:clean_architecture/domain/datasources/criptocurrency_datasource.dart';
-import 'package:clean_architecture/domain/entities/criptocurrency_entity.dart';
-import 'package:clean_architecture/infrastructure/mappers/criptocurrency_mapper.dart';
-import 'package:clean_architecture/infrastructure/models/criptocurrency_coingecko_model.dart';
-
-import '../../config/functions/functions.lib.dart';
-import '../../config/variables/variable.lib.dart';
+part of infrastructure.datasources;
 
 class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
   @override

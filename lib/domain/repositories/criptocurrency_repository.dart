@@ -1,4 +1,4 @@
-import 'package:clean_architecture/domain/entities/criptocurrency_entity.dart';
+part of domain.repositories;
 
 abstract class CriptocurrencyRepository {
   Future<CriptoCurrencyListState> getCriptocurrency(

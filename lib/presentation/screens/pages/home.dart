@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../config/variables/variable.lib.dart';
-import '../../../domain/entities/criptocurrency_entity.dart';
-import '../../providers/criptocurrencies/criptocurrencies.dart';
-import '../widgets/label.dart';
-import '../widgets/table.dart';
+part of presentation.screens;
 
 class HomeScreen extends StatelessWidget {
   static const name = 'home-screen';

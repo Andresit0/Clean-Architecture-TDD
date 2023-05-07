@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'config/variables/variable.lib.dart';
+import 'config/variables/_variable.lib.dart';
 
 void main() {
   setPathUrlStrategy();

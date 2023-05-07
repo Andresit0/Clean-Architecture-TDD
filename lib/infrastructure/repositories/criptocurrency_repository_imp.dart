@@ -5,8 +5,11 @@ class CriptocurrencyRepositoryImp extends CriptocurrencyRepository {
   CriptocurrencyRepositoryImp(this.datasource);
 
   @override
-  Future<CriptoCurrencyListState> getCriptocurrency(
-      List<String> currencyIdsList) {
-    return datasource.getCriptocurrencies(currencyIdsList);
+  Future<CriptoCurrencyListState> getCriptocurrency({
+    required List<String> currencyIdsList,
+    required BuildContext context,
+  }) {
+    return datasource.getCriptocurrencies(
+        currencyIdsList: currencyIdsList, context: context);
   }
 }

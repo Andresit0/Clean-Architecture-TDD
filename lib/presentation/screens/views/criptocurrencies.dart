@@ -13,7 +13,7 @@ class CriptocurrenciesView extends StatelessWidget {
         children: [
           SizedBox(
               width: double.infinity,
-              child: header(
+              child: CustomHeader(
                 text:
                     localization.AppLocalizations.of(context)!.criptocurrencies,
               )),
@@ -21,10 +21,10 @@ class CriptocurrenciesView extends StatelessWidget {
             child: Column(
               children: [
                 criptocurrrencies.httpError != null
-                    ? Text(criptocurrrencies.httpError!)
+                    ? Text(criptocurrrencies.httpError!.errorMessage)
                     : criptocurrrencies.isLoading
                         ? const CircularProgressIndicator()
-                        : table(
+                        : CustomTable(
                             titleColumn: [
                               localization.AppLocalizations.of(context)!.name,
                               localization.AppLocalizations.of(context)!.symbol,

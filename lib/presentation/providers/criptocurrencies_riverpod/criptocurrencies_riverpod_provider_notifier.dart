@@ -8,13 +8,17 @@ class CriptocurrenciesNotifier extends StateNotifier<CriptoCurrencyListState> {
     required this.getCriptocurrencies,
   }) : super(const CriptoCurrencyListState(isLoading: true));
 
-  Future<void> loadNextCriptocurrencyData({List<String>? currencyIDs}) async {
+  Future<void> loadNextCriptocurrencyData({
+    List<String>? currencyIDs,
+    required BuildContext context,
+  }) async {
     if (isLoading) return;
     isLoading = true;
     CriptoCurrencyListState newCriptocurrenciesList = await getCriptocurrencies(
-        currencyIDs ??
-            CustomVariables
-                .constCriptocurrencyList.criptocurrenciesMostKnowledge);
+      currencyIdsList: currencyIDs ??
+          CustomVariables.constCriptocurrencyList.criptocurrenciesMostKnowledge,
+      context: context,
+    );
     state = newCriptocurrenciesList;
     await Future.delayed(const Duration(seconds: 5));
     isLoading = false;

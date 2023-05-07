@@ -1,10 +1,13 @@
 part of infrastructure.mappers;
 
 class CriptocurrencyMapper {
-  static CriptocurrencyEntity criptocurrencyToEntity(
-          CriptocurrencyCoingeckoModel criptocurrencyCoingeckoModel) =>
+  static CriptocurrencyEntity criptocurrencyToEntity({
+    required CriptocurrencyCoingeckoModel criptocurrencyCoingeckoModel,
+    RestError? restError,
+  }) =>
       (CriptocurrencyEntity(
           name: criptocurrencyCoingeckoModel.name!,
           symbol: criptocurrencyCoingeckoModel.symbol!,
-          price: criptocurrencyCoingeckoModel.currentPrice!));
+          price: criptocurrencyCoingeckoModel.currentPrice!,
+          restError: restError));
 }

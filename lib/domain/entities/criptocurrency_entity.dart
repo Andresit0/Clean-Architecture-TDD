@@ -3,7 +3,7 @@ part of domain.entities;
 class CriptoCurrencyListState {
   final bool isLoading;
   final List<CriptocurrencyEntity>? listCriptoCurrency;
-  final String? httpError;
+  final RestError? httpError;
 
   const CriptoCurrencyListState({
     this.isLoading = false,
@@ -14,7 +14,7 @@ class CriptoCurrencyListState {
   CriptoCurrencyListState copyWith(
       {bool? isLoading,
       List<CriptocurrencyEntity>? listCriptoCurrency,
-      String? httpError}) {
+      RestError? httpError}) {
     return CriptoCurrencyListState(
       isLoading: isLoading ?? this.isLoading,
       listCriptoCurrency: listCriptoCurrency ?? this.listCriptoCurrency,
@@ -40,18 +40,22 @@ class CriptocurrencyEntity {
   final String name;
   final String symbol;
   final double price;
+  final RestError? restError;
 
   CriptocurrencyEntity({
     required this.name,
     required this.symbol,
     required this.price,
+    required this.restError,
   });
 
-  factory CriptocurrencyEntity.from(Map<String, dynamic> json) {
+  factory CriptocurrencyEntity.from(
+      Map<String, dynamic> json, RestError? restError) {
     return CriptocurrencyEntity(
       name: json['name'],
       symbol: json['symbol'],
       price: json['current_price'],
+      restError: restError,
     );
   }
 
@@ -59,11 +63,13 @@ class CriptocurrencyEntity {
     String? name,
     String? symbol,
     double? price,
+    RestError? restError,
   }) =>
       CriptocurrencyEntity(
         name: name ?? this.name,
         symbol: symbol ?? this.symbol,
         price: price ?? this.price,
+        restError: restError,
       );
 
   @override

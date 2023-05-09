@@ -19,17 +19,11 @@ class CriptocurrenciesRiverpodState
         .loadNextCriptocurrencyData(context: context);
   }
 
-  @override
-  void dispose() {
-    ref.read(getCriptocurrenciesProvider.notifier).dispose();
-    super.dispose();
-  }
-
-  void updateCriptoCurrencyList() async {
+  void updateCriptoCurrencyList(BuildContext context) async {
     while (true) {
       await Future.delayed(const Duration(seconds: 30)).then((value) async =>
           await ref
-              .read(getCriptocurrenciesProvider.notifier)
+              .watch(getCriptocurrenciesProvider.notifier)
               .loadNextCriptocurrencyData(
                 currencyIDs:
                     CustomVariables.dynCriptocurrencyList.criptocurrencies,
@@ -40,7 +34,7 @@ class CriptocurrenciesRiverpodState
 
   @override
   Widget build(BuildContext context) {
-    updateCriptoCurrencyList();
+    updateCriptoCurrencyList(context);
     final criptoCurrrencies = ref.watch(getCriptocurrenciesProvider);
     return Scaffold(
       backgroundColor: CustomVariables.constColors.appBackground,

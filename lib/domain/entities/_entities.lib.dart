@@ -8,6 +8,5 @@ import 'package:flutter/material.dart';
 
 import '../../presentation/screens/_screen.lib.dart';
 
-part '_entities.dart';
 part 'criptocurrency_entity.dart';
 part 'rest_error.dart';

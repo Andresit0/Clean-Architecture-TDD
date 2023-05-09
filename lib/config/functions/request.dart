@@ -18,11 +18,6 @@ class CustomRequest {
         httpBodyResponse: response.body,
         httpPath: uri.toString(),
       );
-      //400	BAD_REQUEST
-      //401	UNAUTHORIZED
-      //404	NOT_FOUND
-      //500	INTERNAL_SERVER_ERROR
-      //502	BAD_GATEWAY
     } catch (e, stackTrace) {
       if (kDebugMode) print(stackTrace);
       return RestError(

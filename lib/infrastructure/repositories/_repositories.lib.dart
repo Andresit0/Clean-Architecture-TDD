@@ -7,4 +7,3 @@ import '../../domain/entities/_entities.lib.dart';
 import '../../domain/repositories/_repositories.lib.dart';
 
 part 'criptocurrency_repository_imp.dart';
-part '_repositories.dart';

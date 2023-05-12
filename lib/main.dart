@@ -17,25 +17,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Locale>(
-        initialData: CustomVariables.dynEnviroment.locale,
-        stream: CustomVariables.constLocalization.localeStreamController.stream,
-        builder: (context, snapshotLocale) {
-          return MaterialApp.router(
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('en', ''),
-              Locale('es', ''),
-            ],
-            locale: snapshotLocale.data,
-            routerConfig: CustomVariables.constRoute.appRouter,
-            debugShowCheckedModeBanner: false,
-            theme: CustomConstThemeApp().getTheme(),
-          );
-        });
+      initialData: CustomVariables.dynEnviroment.locale,
+      stream: CustomVariables.constLocalization.localeStreamController.stream,
+      builder: (context, snapshotLocale) {
+        return MaterialApp.router(
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en', ''),
+            Locale('es', ''),
+          ],
+          locale: snapshotLocale.data,
+          routerConfig: CustomVariables.constRoute.appRouter,
+          debugShowCheckedModeBanner: false,
+          theme: CustomVariables.constThemeApp.getTheme(),
+        );
+      },
+    );
   }
 }

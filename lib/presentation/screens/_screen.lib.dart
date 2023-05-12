@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../config/variables/_variable.lib.dart';
 import '../../domain/entities/_entities.lib.dart';
-import '../providers/criptocurrencies_riverpod/_criptocurrencies_riverpod.lib.dart';
+import '../controllers/criptocurrencies_riverpod/_criptocurrencies_riverpod.lib.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart' as localization;
 
 part 'pages/criptocurrencies_riverpod.dart';

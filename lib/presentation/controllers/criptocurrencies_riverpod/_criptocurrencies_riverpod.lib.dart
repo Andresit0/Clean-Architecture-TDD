@@ -8,7 +8,7 @@ import '../../../domain/entities/_entities.lib.dart';
 import '../../../infrastructure/datasources/_datasources.lib.dart';
 import '../../../infrastructure/repositories/_repositories.lib.dart';
 
-part '../../providers/criptocurrencies_riverpod/criptocurrencies_riverpod_callback.dart';
-part '../../providers/criptocurrencies_riverpod/criptocurrencies_riverpod_provider_notifier.dart';
-part '../../providers/criptocurrencies_riverpod/criptocurrencies_riverpod_provider.dart';
-part '../../providers/criptocurrencies_riverpod/criptocurrencies_riverpod_repository_provider.dart';
+part '../../controllers/criptocurrencies_riverpod/criptocurrencies_riverpod_callback.dart';
+part '../../controllers/criptocurrencies_riverpod/criptocurrencies_riverpod_provider_notifier.dart';
+part '../../controllers/criptocurrencies_riverpod/criptocurrencies_riverpod_provider.dart';
+part '../../controllers/criptocurrencies_riverpod/criptocurrencies_riverpod_repository_provider.dart';

@@ -1,6 +1,6 @@
-part of config.functions.packages;
+part of config.functions;
 
-class CustomRequest {
+class CustomRequestFunc {
   Map<String, String> basicHeaders = {};
 
   get({

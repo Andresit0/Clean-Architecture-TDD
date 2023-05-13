@@ -1,6 +1,6 @@
 part of config.variables;
 
-class CustomConstCriptocurrencyList {
+class CustomConstCriptocurrencyVariables {
   List<String> criptocurrenciesMostKnowledge = const [
     'bitcoin',
     'ethereum',

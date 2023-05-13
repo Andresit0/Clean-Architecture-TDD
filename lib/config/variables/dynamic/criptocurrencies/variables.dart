@@ -1,5 +1,5 @@
 part of config.variables;
 
-class CustomDynCriptocurrencyList {
+class CustomDynCriptocurrencyVariables {
   List<String> criptocurrencies = ['bitcoin', 'ethereum', 'coinary-token'];
 }

@@ -1,11 +1,18 @@
 part of presentation.screens;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const name = 'home';
   static const path = '/home';
+  const HomePage({super.key});
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final StreamSubscription internetSubscription;
   final StreamController<bool> switchStreamController =
       StreamController.broadcast();
-  HomePage({super.key});
+
   Widget criptoCurrencyList() {
     return Column(
       children: [
@@ -16,6 +23,22 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    internetSubscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) async {
+      await CustomInternetDialog.customDialogShowedWhenNoInternet(context);
+    });
+  }
+
+  @override
+  dispose() {
+    super.dispose();
+    internetSubscription.cancel();
   }
 
   @override

@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  connectivity_plus: ^3.0.6
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
@@ -50,9 +51,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
-  
   uses-material-design: true
-  
+
   # fonts:
   #   - family: Schyler
   #     fonts:
@@ -67,7 +67,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
   #Must be at the end
   generate: true
-  

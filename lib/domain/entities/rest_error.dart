@@ -24,9 +24,11 @@ class RestError {
         StacTrace: $stackTrace
       ''');
     }
-    if (!CustomDialog.errorDialogIsShowed) {
-      CustomDialog.errorDialogIsShowed = true;
-      CustomDialog.customDialogHeaderBodyFooter(
+
+    CustomInternetDialog.customDialogShowedWhenNoInternet(context)
+        .whenComplete(() {
+      if (!CustomFunctions.dialog.isActive(context)) {
+        CustomDialog.customDialogHeaderBodyFooter(
           context: context,
           colorHeaderBackground: CustomVariables.constColors.black,
           title: const Text('ERROR'),
@@ -37,10 +39,10 @@ class RestError {
           footerButtons: [],
           dialogHeight: 200,
           dialogWidth: 200,
-          onclose: () {
-            CustomDialog.errorDialogIsShowed = false;
-          });
-    }
+          onclose: () {},
+        );
+      }
+    });
   }
 
   String get messageToShow {

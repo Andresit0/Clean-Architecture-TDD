@@ -1,7 +1,6 @@
 part of presentation.screens;
 
 class CustomDialog {
-  static bool errorDialogIsShowed = false;
   static Widget customDialogHeader(
       BuildContext context, Widget title, Color colorClose, Function? onclose) {
     return StatefulBuilder(builder: (context, setState) {

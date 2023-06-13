@@ -2,7 +2,7 @@ part of infrastructure.datasources;
 
 class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
   @override
-  Future<CriptoCurrencyListState> getCriptocurrencies({
+  Future<CriptoCurrencyListStateEntity> getCriptocurrencies({
     required List<String> currencyIdsList,
     required BuildContext context,
   }) async {
@@ -13,8 +13,9 @@ class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
       },
     );
     var result = await CustomFunctions.request.get(uri: uri, context: context);
-    if (result is RestError) return CriptoCurrencyListState(httpError: result);
-    return CriptoCurrencyListState(
+    if (result is RestErrorEntity)
+      return CriptoCurrencyListStateEntity(httpError: result);
+    return CriptoCurrencyListStateEntity(
       listCriptoCurrency: result
           .map<CriptocurrencyEntity>((json) =>
               CriptocurrencyMapper.criptocurrencyToEntity(

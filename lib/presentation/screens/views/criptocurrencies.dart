@@ -1,7 +1,7 @@
 part of presentation.screens;
 
 class CriptocurrenciesView extends StatelessWidget {
-  final CriptoCurrencyListState criptocurrrencies;
+  final CriptoCurrencyListStateEntity criptocurrrencies;
   const CriptocurrenciesView({
     super.key,
     required this.criptocurrrencies,

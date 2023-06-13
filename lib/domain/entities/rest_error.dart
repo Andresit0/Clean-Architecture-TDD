@@ -1,6 +1,6 @@
 part of domain.entities;
 
-class RestError {
+class RestErrorEntity {
   int? responseCode;
   final BuildContext context;
   final String httpPath;
@@ -8,7 +8,7 @@ class RestError {
   final String errorMessage;
   final String stackTrace;
   final Object exception;
-  RestError({
+  RestErrorEntity({
     required this.context,
     required this.exception,
     required this.errorMessage,

@@ -1,6 +1,7 @@
 part of presentation.providers.criptocurrencies;
 
-typedef CriptocurrencyCallback = Future<CriptoCurrencyListState> Function({
+typedef CriptocurrencyCallback = Future<CriptoCurrencyListStateEntity>
+    Function({
   required List<String> currencyIdsList,
   required BuildContext context,
 });

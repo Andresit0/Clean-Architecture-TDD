@@ -5,7 +5,7 @@ class CriptocurrencyRepositoryImp extends CriptocurrencyRepository {
   CriptocurrencyRepositoryImp(this.datasource);
 
   @override
-  Future<CriptoCurrencyListState> getCriptocurrency({
+  Future<CriptoCurrencyListStateEntity> getCriptocurrency({
     required List<String> currencyIdsList,
     required BuildContext context,
   }) {

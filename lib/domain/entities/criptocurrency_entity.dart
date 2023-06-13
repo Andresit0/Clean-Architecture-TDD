@@ -1,21 +1,21 @@
 part of domain.entities;
 
-class CriptoCurrencyListState {
+class CriptoCurrencyListStateEntity {
   final bool isLoading;
   final List<CriptocurrencyEntity>? listCriptoCurrency;
-  final RestError? httpError;
+  final RestErrorEntity? httpError;
 
-  const CriptoCurrencyListState({
+  const CriptoCurrencyListStateEntity({
     this.isLoading = false,
     this.listCriptoCurrency,
     this.httpError,
   });
 
-  CriptoCurrencyListState copyWith(
+  CriptoCurrencyListStateEntity copyWith(
       {bool? isLoading,
       List<CriptocurrencyEntity>? listCriptoCurrency,
-      RestError? httpError}) {
-    return CriptoCurrencyListState(
+      RestErrorEntity? httpError}) {
+    return CriptoCurrencyListStateEntity(
       isLoading: isLoading ?? this.isLoading,
       listCriptoCurrency: listCriptoCurrency ?? this.listCriptoCurrency,
       httpError: httpError ?? this.httpError,
@@ -25,7 +25,7 @@ class CriptoCurrencyListState {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CriptoCurrencyListState &&
+      other is CriptoCurrencyListStateEntity &&
           runtimeType == other.runtimeType &&
           isLoading == other.isLoading &&
           listCriptoCurrency == other.listCriptoCurrency &&
@@ -40,7 +40,7 @@ class CriptocurrencyEntity {
   final String name;
   final String symbol;
   final double price;
-  final RestError? restError;
+  final RestErrorEntity? restError;
 
   CriptocurrencyEntity({
     required this.name,
@@ -50,7 +50,7 @@ class CriptocurrencyEntity {
   });
 
   factory CriptocurrencyEntity.from(
-      Map<String, dynamic> json, RestError? restError) {
+      Map<String, dynamic> json, RestErrorEntity? restError) {
     return CriptocurrencyEntity(
       name: json['name'],
       symbol: json['symbol'],
@@ -63,7 +63,7 @@ class CriptocurrencyEntity {
     String? name,
     String? symbol,
     double? price,
-    RestError? restError,
+    RestErrorEntity? restError,
   }) =>
       CriptocurrencyEntity(
         name: name ?? this.name,

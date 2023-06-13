@@ -8,7 +8,7 @@ class CustomRequestFunc {
     required BuildContext context,
     Map<String, String>? headers,
   }) async {
-    return await request(
+    return await _request(
       method: 'get',
       uri: uri,
       context: context,
@@ -16,7 +16,7 @@ class CustomRequestFunc {
     );
   }
 
-  request({
+  _request({
     required String method,
     required Uri uri,
     required BuildContext context,
@@ -47,7 +47,7 @@ class CustomRequestFunc {
         return jsonDecode(await response.stream.bytesToString());
       }
       if (response.statusCode == 200) return jsonDecode(response.body);
-      return RestError(
+      return RestErrorEntity(
         context: context,
         exception: Exception('Error from server'),
         errorMessage: 'Error from server',
@@ -58,7 +58,7 @@ class CustomRequestFunc {
       );
     } catch (e, stackTrace) {
       if (kDebugMode) print(stackTrace);
-      return RestError(
+      return RestErrorEntity(
         context: context,
         exception: e,
         errorMessage: 'Error from server',

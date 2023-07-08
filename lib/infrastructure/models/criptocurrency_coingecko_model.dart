@@ -142,9 +142,9 @@ class CriptocurrencyCoingeckoModel {
         marketCapChange24H: json["market_cap_change_24h"]?.toDouble(),
         marketCapChangePercentage24H:
             json["market_cap_change_percentage_24h"]?.toDouble(),
-        circulatingSupply: json["circulating_supply"],
-        totalSupply: json["total_supply"],
-        maxSupply: json["max_supply"],
+        circulatingSupply: json["circulating_supply"]?.toDouble(),
+        totalSupply: json["total_supply"]?.toDouble(),
+        maxSupply: json["max_supply"]?.toDouble(),
         ath: json["ath"] + 0.0,
         athChangePercentage: json["ath_change_percentage"]?.toDouble(),
         athDate:

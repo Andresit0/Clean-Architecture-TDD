@@ -13,8 +13,9 @@ class CriptocurrencyDatasourceImp extends CriptocurrencyDatasource {
       },
     );
     var result = await CustomFunctions.request.get(uri: uri, context: context);
-    if (result is RestErrorEntity)
+    if (result is RestErrorEntity) {
       return CriptoCurrencyListStateEntity(httpError: result);
+    }
     return CriptoCurrencyListStateEntity(
       listCriptoCurrency: result
           .map<CriptocurrencyEntity>((json) =>

@@ -62,4 +62,25 @@ class RestErrorEntity {
 
     return message;
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is RestErrorEntity &&
+          runtimeType == other.runtimeType &&
+          httpPath == other.httpPath &&
+          httpBodyResponse == other.httpBodyResponse &&
+          errorMessage == other.errorMessage &&
+          stackTrace == other.stackTrace;
+
+  @override
+  int get hashCode =>
+      httpPath.hashCode ^
+      httpBodyResponse.hashCode ^
+      errorMessage.hashCode ^
+      stackTrace.hashCode;
+
+  @override
+  String toString() =>
+      "httpPath: $httpPath httpBodyResponse: $httpBodyResponse errorMessage: $errorMessage stackTrace: $stackTrace";
 }

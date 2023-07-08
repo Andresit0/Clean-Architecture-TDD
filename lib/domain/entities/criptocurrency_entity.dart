@@ -28,12 +28,16 @@ class CriptoCurrencyListStateEntity {
       other is CriptoCurrencyListStateEntity &&
           runtimeType == other.runtimeType &&
           isLoading == other.isLoading &&
-          listCriptoCurrency == other.listCriptoCurrency &&
+          listEquals(listCriptoCurrency, other.listCriptoCurrency) &&
           httpError == other.httpError;
 
   @override
   int get hashCode =>
       isLoading.hashCode ^ listCriptoCurrency.hashCode ^ httpError.hashCode;
+
+  @override
+  String toString() =>
+      "isLoading: $isLoading \n listCriptoCurrency: $listCriptoCurrency \n httpError: $httpError";
 }
 
 class CriptocurrencyEntity {

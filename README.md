@@ -28,7 +28,12 @@
 ## TEST
 1. The test folder should contains same folders than lib. 
 2. Each test file should has same name concatenate with `_test` word (eg: example_test.dart).
-3. Files need to have `@GenerateMocks([class])` or `@GenerateNiceMocks([MockSpec<className>(as: #MockClassName)])` to create mockito files. Furthermore, to create autogenrated mockito files run:
+3. Files that works with `import 'package:mockito/mockito.dart';` package could has `@GenerateMocks([class])` or `@GenerateNiceMocks([MockSpec<className>(as: #MockClassName)])` to create mockito files. Furthermore, to create autogenrated mockito files run:
 
     ```flutter pub run  build_runner build --delete-conflicting-outputs```
+    
+4. Files that works with `mocktail` packages needs:
 
+    ```import 'package:mocktail/mocktail.dart'; ```
+
+    ```class MockClassName extends Mock implements MockClassName {}```

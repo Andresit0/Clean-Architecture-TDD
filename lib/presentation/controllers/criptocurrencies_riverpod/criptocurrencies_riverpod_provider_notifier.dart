@@ -11,7 +11,7 @@ class CriptocurrenciesNotifier
     required this.ref,
   }) : super(const CriptoCurrencyListStateEntity(isLoading: true));
 
-  Future<void> loadNextCriptocurrencyData({
+  Future<CriptoCurrencyListStateEntity> loadNextCriptocurrencyData({
     List<String>? currencyIDs,
     required BuildContext context,
   }) async {
@@ -34,6 +34,7 @@ class CriptocurrenciesNotifier
           .read(getCriptocurrenciesLoadingProvider.notifier)
           .newCriptoCurrencyListStateEntity(response);
     });
+    return response;
   }
 }
 

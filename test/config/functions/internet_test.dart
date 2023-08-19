@@ -1,5 +1,4 @@
 import 'package:clean_architecture/config/functions/_functions.lib.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -10,7 +9,6 @@ void main() {
   late MockCustomInternetFunc sut;
   setUp(() {
     sut = MockCustomInternetFunc();
-    WidgetsFlutterBinding.ensureInitialized();
   });
   group("Testing user internet connection", () {
     test('CustomInternetFunc was called 1 time', () async {

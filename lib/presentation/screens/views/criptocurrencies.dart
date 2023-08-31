@@ -23,8 +23,11 @@ class CriptocurrenciesView extends StatelessWidget {
                 criptocurrrencies.httpError != null
                     ? Text(criptocurrrencies.httpError!.errorMessage)
                     : criptocurrrencies.isLoading
-                        ? const CircularProgressIndicator()
+                        ? const CircularProgressIndicator(
+                            key: Key('circularProgressIndicator'),
+                          )
                         : CustomTable(
+                            key: const Key('tableWithCriptocurrencies'),
                             titleColumn: [
                               localization.AppLocalizations.of(context)!.name,
                               localization.AppLocalizations.of(context)!.symbol,

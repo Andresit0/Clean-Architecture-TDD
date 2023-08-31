@@ -25,14 +25,27 @@
 1. Contains a state manager inside folder `controllers`.
 2. Data used for each widget comes from controllers.
 
-## TEST
+## RIVERPOD 2.0
+1. Open the terminal to install:
+```
+flutter pub add \
+flutter_riverpod \
+riverpod_annotation \
+dev:riverpod_generator \
+dev:build_runner \
+dev:custom_lint \
+dev:riverpod_lint
+```
+2. Keep running: ```dart run build_runner watch```
+
+## TESTING
 1. The test folder should contains same folders than lib. 
 2. Each test file should has same name concatenate with `_test` word (eg: example_test.dart).
 3. Files that works with `import 'package:mockito/mockito.dart';` package could has `@GenerateMocks([class])` or `@GenerateNiceMocks([MockSpec<className>(as: #MockClassName)])` to create mockito files. Furthermore, to create autogenrated mockito files run:
 
     ```flutter pub run  build_runner build --delete-conflicting-outputs```
     
-4. Files that works with `mocktail` packages needs:
+4. Files that works with `mocktail` needs:
 
     ```import 'package:mocktail/mocktail.dart'; ```
 

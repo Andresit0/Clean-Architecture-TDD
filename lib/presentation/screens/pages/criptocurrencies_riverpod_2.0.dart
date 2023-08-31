@@ -1,17 +1,17 @@
 part of presentation.screens;
 
-class CriptocurrenciesRiverpodPageCtrl extends ConsumerStatefulWidget {
-  static const name = 'criptocurrencies_riverpod';
-  static const path = '/home/criptocurrencies_riverpod';
+class CriptocurrenciesRiverpod2PageCtrl extends ConsumerStatefulWidget {
+  static const name = 'criptocurrencies_riverpod2';
+  static const path = '/home/criptocurrencies_riverpod2';
   static bool reload = true;
-  const CriptocurrenciesRiverpodPageCtrl({super.key});
+  const CriptocurrenciesRiverpod2PageCtrl({super.key});
   @override
-  CriptocurrenciesRiverpodState createState() =>
-      CriptocurrenciesRiverpodState();
+  CriptocurrenciesRiverpod2State createState() =>
+      CriptocurrenciesRiverpod2State();
 }
 
-class CriptocurrenciesRiverpodState
-    extends ConsumerState<CriptocurrenciesRiverpodPageCtrl> {
+class CriptocurrenciesRiverpod2State
+    extends ConsumerState<CriptocurrenciesRiverpod2PageCtrl> {
   @override
   void initState() {
     super.initState();
@@ -19,15 +19,15 @@ class CriptocurrenciesRiverpodState
   }
 
   updateCriptoCurrencyList(BuildContext context) async {
-    await Future.delayed(const Duration(seconds: 2), () {
+    await Future.delayed(const Duration(seconds: 1), () {
       ref
-          .watch(getCriptocurrenciesProvider.notifier)
+          .watch(criptocurrenciesRiverpod2Provider.notifier)
           .loadNextCriptocurrencyData(context: context);
     });
-    while (CriptocurrenciesRiverpodPageCtrl.reload) {
+    while (CriptocurrenciesRiverpod2PageCtrl.reload) {
       await Future.delayed(const Duration(seconds: 30)).then((value) async {
         await ref
-            .watch(getCriptocurrenciesProvider.notifier)
+            .watch(criptocurrenciesRiverpod2Provider.notifier)
             .loadNextCriptocurrencyData(
               currencyIDs:
                   CustomVariables.dynCriptocurrencyList.criptocurrencies,
@@ -40,7 +40,7 @@ class CriptocurrenciesRiverpodState
   @override
   Widget build(BuildContext context) {
     CriptoCurrencyListStateEntity criptoCurrrencies =
-        ref.watch(getCriptocurrenciesLoadingProvider);
+        ref.watch(criptocurrenciesLoadingRiverpod2Provider);
     return Scaffold(
       backgroundColor: CustomVariables.constColors.appBackground,
       body: CriptocurrenciesView(criptocurrrencies: criptoCurrrencies),

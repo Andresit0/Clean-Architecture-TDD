@@ -1,5 +1,6 @@
 import 'package:clean_architecture/domain/entities/_entities.lib.dart';
-import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod/_criptocurrencies_riverpod.lib.dart';
+import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod_2.0/criptocurrencies_loading_riverpod2.0.dart';
+import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod_2.0/criptocurrencies_riverpod2.0.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,8 +8,8 @@ import 'package:mocktail/mocktail.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
-class MockCriptocurrenciesNotifier extends Mock
-    implements CriptocurrenciesNotifier {
+class MockCriptocurrenciesRiverpod2 extends Mock
+    implements CriptocurrenciesRiverpod2 {
   CriptoCurrencyListStateEntity state2 =
       const CriptoCurrencyListStateEntity(isLoading: true);
   @override
@@ -45,12 +46,12 @@ void main() {
       var container = ProviderContainer();
       final listener = Listener<CriptoCurrencyListStateEntity>();
       container.listen<CriptoCurrencyListStateEntity>(
-        getCriptocurrenciesLoadingProvider,
+        criptocurrenciesLoadingRiverpod2Provider,
         listener,
         fireImmediately: true,
       );
       var provider =
-          container.read(getCriptocurrenciesLoadingProvider.notifier);
+          container.read(criptocurrenciesLoadingRiverpod2Provider.notifier);
       expect(
           provider.state, const CriptoCurrencyListStateEntity(isLoading: true));
       provider.newCriptoCurrencyListStateEntity(criptoCurrencyListStateEntity);
@@ -59,16 +60,17 @@ void main() {
     test(
         'getCriptocurrenciesProvider: load new cripto currency data with mock provider',
         () async {
-      final mockCriptocurrenciesNotifier = MockCriptocurrenciesNotifier();
-      when(() => mockCriptocurrenciesNotifier.loadNextCriptocurrencyData(
+      final mockCriptocurrenciesRiverpod2 = MockCriptocurrenciesRiverpod2();
+      when(() => mockCriptocurrenciesRiverpod2.loadNextCriptocurrencyData(
           context: context)).thenAnswer((invocation) async {
-        mockCriptocurrenciesNotifier.state = criptoCurrencyListStateEntity;
+        mockCriptocurrenciesRiverpod2.state = criptoCurrencyListStateEntity;
         return criptoCurrencyListStateEntity;
       });
-      expect(mockCriptocurrenciesNotifier.state.isLoading, true);
-      var result = await mockCriptocurrenciesNotifier
+      expect(mockCriptocurrenciesRiverpod2.state.isLoading, true);
+      var result = await mockCriptocurrenciesRiverpod2
           .loadNextCriptocurrencyData(context: context);
-      expect(mockCriptocurrenciesNotifier.state, criptoCurrencyListStateEntity);
+      expect(
+          mockCriptocurrenciesRiverpod2.state, criptoCurrencyListStateEntity);
       expect(result, criptoCurrencyListStateEntity);
     });
   });

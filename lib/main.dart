@@ -7,9 +7,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'config/variables/_variable.lib.dart';
 
+const scopeProvider = ProviderScope(child: MyApp());
+
 void main() {
   setPathUrlStrategy();
-  return runApp(const ProviderScope(child: MyApp()));
+  return runApp(scopeProvider);
 }
 
 class MyApp extends StatelessWidget {

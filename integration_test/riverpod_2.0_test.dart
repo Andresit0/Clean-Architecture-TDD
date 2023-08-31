@@ -1,11 +1,11 @@
 import 'package:clean_architecture/domain/entities/_entities.lib.dart';
 import 'package:clean_architecture/main.dart';
-import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod/_criptocurrencies_riverpod.lib.dart';
+import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod_2.0/criptocurrencies_loading_riverpod2.0.dart';
+import 'package:clean_architecture/presentation/controllers/criptocurrencies_riverpod_2.0/criptocurrencies_riverpod2.0.dart';
 import 'package:clean_architecture/presentation/screens/_screen.lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 
 CriptoCurrencyListStateEntity criptoCurrencyListStateEntity =
     CriptoCurrencyListStateEntity(listCriptoCurrency: [
@@ -15,24 +15,17 @@ CriptoCurrencyListStateEntity criptoCurrencyListStateEntity =
       name: 'Ethereum', symbol: 'eth', price: 1738.02, restError: null),
 ]);
 
-MockCriptocurrenciesLoadingNotifier mockCriptocurrenciesLoadingNotifier =
-    MockCriptocurrenciesLoadingNotifier();
+MockCriptocurrenciesLoadingRiverpod2 mockCriptocurrenciesLoadingRiverpod2 =
+    MockCriptocurrenciesLoadingRiverpod2();
 
-class MockRef extends Mock
-    implements
-        StateNotifierProviderRef<CriptocurrenciesNotifier,
-            CriptoCurrencyListStateEntity> {}
-
-class MockCriptocurrenciesLoadingNotifier
-    extends CriptocurrenciesLoadingNotifier {
+class MockCriptocurrenciesLoadingRiverpod2
+    extends CriptocurrenciesLoadingRiverpod2 {
   @override
   CriptoCurrencyListStateEntity get state =>
       const CriptoCurrencyListStateEntity(isLoading: true);
 }
 
-class MockCriptocurrenciesNotifier extends CriptocurrenciesNotifier {
-  MockCriptocurrenciesNotifier({required super.ref});
-
+class MockCriptocurrenciesRiverpod2 extends CriptocurrenciesRiverpod2 {
   @override
   CriptoCurrencyListStateEntity get state => criptoCurrencyListStateEntity;
 
@@ -41,54 +34,54 @@ class MockCriptocurrenciesNotifier extends CriptocurrenciesNotifier {
       {List<String>? currencyIDs, required BuildContext context}) async {
     await Future.delayed(const Duration(seconds: 2));
     state = criptoCurrencyListStateEntity;
-    mockCriptocurrenciesLoadingNotifier.state = criptoCurrencyListStateEntity;
+    mockCriptocurrenciesLoadingRiverpod2.state = criptoCurrencyListStateEntity;
     return criptoCurrencyListStateEntity;
   }
 }
 
 void main() {
-  late MockCriptocurrenciesNotifier mockCriptocurrenciesNotifier;
-  late MockRef ref;
+  late MockCriptocurrenciesRiverpod2 mockCriptocurrenciesRiverpod2;
   setUp(() {
-    ref = MockRef();
-    mockCriptocurrenciesNotifier = MockCriptocurrenciesNotifier(ref: ref);
+    mockCriptocurrenciesRiverpod2 = MockCriptocurrenciesRiverpod2();
   });
 
   Widget testingWidget() {
     return ProviderScope(
       overrides: [
-        getCriptocurrenciesLoadingProvider
-            .overrideWith((ref) => mockCriptocurrenciesLoadingNotifier),
-        getCriptocurrenciesProvider
-            .overrideWith((ref) => mockCriptocurrenciesNotifier),
+        criptocurrenciesLoadingRiverpod2Provider
+            .overrideWith(() => mockCriptocurrenciesLoadingRiverpod2),
+        criptocurrenciesRiverpod2Provider
+            .overrideWith(() => mockCriptocurrenciesRiverpod2),
       ],
       child: const MyApp(),
     );
   }
 
-  group('Riverpod Evaluation', () {
+  group('Riverpod 2.0 Evaluation', () {
     testWidgets('Show Circular Progres Indicator', (WidgetTester tester) async {
       WidgetsFlutterBinding.ensureInitialized();
-      CriptocurrenciesRiverpodPageCtrl.reload = false;
+      CriptocurrenciesRiverpod2PageCtrl.reload = false;
       await tester.pumpWidget(testingWidget());
-      final Finder fab = find.bySemanticsLabel('Riverpod');
+      final Finder fab = find.bySemanticsLabel('Riverpod 2.0');
       await tester.tap(fab);
-      await tester.pump();
-      await tester.pump(const Duration(microseconds: 1000));
       //Option 1
       // await tester.pumpFrames(
       //     const CircularProgressIndicator(
       //         key: Key('circularProgressIndicator')),
       //     const Duration(microseconds: 500, milliseconds: 600));
+      // expect(
+      //     find.byKey(const Key('circularProgressIndicator')), findsOneWidget);
       //Option 2
+      await tester.pump();
+      await tester.pump(const Duration(microseconds: 1000));
       expect(
           find.byKey(const Key('circularProgressIndicator')), findsOneWidget);
       await tester.pumpAndSettle();
     });
 
     testWidgets('Review Criptocurrency Table', (WidgetTester tester) async {
-      mockCriptocurrenciesLoadingNotifier =
-          MockCriptocurrenciesLoadingNotifier();
+      mockCriptocurrenciesLoadingRiverpod2 =
+          MockCriptocurrenciesLoadingRiverpod2();
       await tester.pumpWidget(testingWidget());
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('circularProgressIndicator')), findsNothing);

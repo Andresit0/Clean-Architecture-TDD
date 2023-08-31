@@ -2,12 +2,10 @@ part of presentation.providers.criptocurrencies;
 
 class CriptocurrenciesNotifier
     extends StateNotifier<CriptoCurrencyListStateEntity> {
-  CriptocurrencyCallback getCriptocurrencies;
   StateNotifierProviderRef<CriptocurrenciesNotifier,
       CriptoCurrencyListStateEntity> ref;
 
   CriptocurrenciesNotifier({
-    required this.getCriptocurrencies,
     required this.ref,
   }) : super(const CriptoCurrencyListStateEntity(isLoading: true));
 
@@ -19,11 +17,13 @@ class CriptocurrenciesNotifier
         .read(getCriptocurrenciesLoadingProvider.notifier)
         .newCriptoCurrencyListStateEntity(
             const CriptoCurrencyListStateEntity(isLoading: true));
-    CriptoCurrencyListStateEntity response = await getCriptocurrencies(
-      currencyIdsList: currencyIDs ??
-          CustomVariables.constCriptocurrencyList.criptocurrenciesMostKnowledge,
-      context: context,
-    );
+    CriptoCurrencyListStateEntity response =
+        await ref.watch(criptocurrenciesRepositoryProvider).getCriptocurrency(
+              currencyIdsList: currencyIDs ??
+                  CustomVariables
+                      .constCriptocurrencyList.criptocurrenciesMostKnowledge,
+              context: context,
+            );
     state = response;
 
     /// Future.delayed to watch loading.

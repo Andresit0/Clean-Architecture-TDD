@@ -10,12 +10,17 @@ class CustomConstRoute {
       ),
       GoRoute(
         path: HomePage.path,
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => const HomePage(),
         routes: [
           GoRoute(
             path: CriptocurrenciesRiverpodPageCtrl.name,
             builder: (context, state) =>
                 const CriptocurrenciesRiverpodPageCtrl(),
+          ),
+          GoRoute(
+            path: CriptocurrenciesRiverpod2PageCtrl.name,
+            builder: (context, state) =>
+                const CriptocurrenciesRiverpod2PageCtrl(),
           ),
         ],
       ),

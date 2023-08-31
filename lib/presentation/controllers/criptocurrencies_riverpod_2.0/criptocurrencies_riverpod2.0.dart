@@ -26,7 +26,7 @@ class CriptocurrenciesRiverpod2 extends _$CriptocurrenciesRiverpod2 {
     ref
         .read(criptocurrenciesLoadingRiverpod2Provider.notifier)
         .newCriptoCurrencyListStateEntity(
-            CriptoCurrencyListStateEntity(isLoading: true));
+            const CriptoCurrencyListStateEntity(isLoading: true));
 
     CriptoCurrencyListStateEntity response = await getCriptocurrency(
         currencyIdsList: currencyIDs ??

@@ -21,7 +21,10 @@ class CriptocurrenciesView extends StatelessWidget {
             child: Column(
               children: [
                 criptocurrrencies.httpError != null
-                    ? Text(criptocurrrencies.httpError!.errorMessage)
+                    ? Text(
+                        criptocurrrencies.httpError!.errorMessage,
+                        key: const Key('httpError'),
+                      )
                     : criptocurrrencies.isLoading
                         ? const CircularProgressIndicator(
                             key: Key('circularProgressIndicator'),

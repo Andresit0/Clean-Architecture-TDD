@@ -4,6 +4,7 @@
         "description": "Criptocurrencies List"
     },
     "name": "Name",
+    "noInternet": "No internet",
     "price": "Price",
     "symbol": "Symbol"
 }

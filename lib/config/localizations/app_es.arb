@@ -4,6 +4,7 @@
         "description": "Listado de Criptomonedas"
     },
     "name": "Nombre",
+    "noInternet": "No hay Internet",
     "price": "Precio",
     "symbol": "Símbolo"
 }

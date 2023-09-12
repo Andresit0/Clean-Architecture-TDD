@@ -55,6 +55,7 @@ class CustomDialog {
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
+              key: const Key('alertDialog'),
               contentPadding: const EdgeInsets.all(0),
               actionsPadding: const EdgeInsets.all(0),
               titlePadding: const EdgeInsets.all(0),

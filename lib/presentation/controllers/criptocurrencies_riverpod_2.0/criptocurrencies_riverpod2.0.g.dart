@@ -7,7 +7,7 @@ part of 'criptocurrencies_riverpod2.0.dart';
 // **************************************************************************
 
 String _$criptocurrenciesRiverpod2Hash() =>
-    r'd86aebeda56ec885e189c936aa69a0294bbbbbac';
+    r'5fa1a61bf008dd7d88ca281bb1c03b6a97bae553';
 
 /// See also [CriptocurrenciesRiverpod2].
 @ProviderFor(CriptocurrenciesRiverpod2)

@@ -26,7 +26,6 @@ class _CriptocurrenciesBlocState extends State<CriptocurrenciesBloc> {
 
   updateCriptoCurrencyList() async {
     MyApp.criptoCurrencyLoadingBloc.loadNextCriptocurrencyData(
-      currencyIDs: CustomVariables.dynCriptocurrencyList.criptocurrencies,
       context: context,
     );
     while (CriptocurrenciesBloc.reload) {

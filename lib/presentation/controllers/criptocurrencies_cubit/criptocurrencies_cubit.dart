@@ -2,10 +2,10 @@ import 'package:clean_architecture/domain/entities/_entities.lib.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../config/variables/_variable.lib.dart';
-import '../../../../infrastructure/datasources/_datasources.lib.dart';
-import '../../../../infrastructure/repositories/_repositories.lib.dart';
-import '../../../../main.dart';
+import '../../../config/variables/_variable.lib.dart';
+import '../../../infrastructure/datasources/_datasources.lib.dart';
+import '../../../infrastructure/repositories/_repositories.lib.dart';
+import '../../../main.dart';
 
 class CriptocurrenciesCubitController
     extends Cubit<CriptoCurrencyListStateEntity> {
@@ -35,6 +35,8 @@ class CriptocurrenciesCubitController
 
   void criptocurrenciesLoading(
       {required CriptoCurrencyListStateEntity criptoCurrencyListStateEntity}) {
-    emit(criptoCurrencyListStateEntity);
+    if (state != criptoCurrencyListStateEntity) {
+      emit(criptoCurrencyListStateEntity);
+    }
   }
 }

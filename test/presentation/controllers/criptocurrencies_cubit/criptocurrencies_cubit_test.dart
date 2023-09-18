@@ -1,5 +1,5 @@
 import 'package:clean_architecture/domain/entities/_entities.lib.dart';
-import 'package:clean_architecture/presentation/controllers/criptocurrencies_bloc/criptocurrencies_bloc.dart';
+import 'package:clean_architecture/presentation/controllers/criptocurrencies_cubit/criptocurrencies_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -7,7 +7,8 @@ import 'package:mocktail/mocktail.dart';
 
 class MockBuildContext extends Mock implements BuildContext {}
 
-class MockCriptoCurrencyLoadingBloc extends CriptoCurrencyLoadingBloc {
+class MockCriptocurrenciesCubitController
+    extends CriptocurrenciesCubitController {
   @override
   loadNextCriptocurrencyData(
       {List<String>? currencyIDs, required BuildContext context}) {
@@ -21,27 +22,27 @@ class MockCriptoCurrencyLoadingBloc extends CriptoCurrencyLoadingBloc {
 }
 
 void main() {
-  late MockCriptoCurrencyLoadingBloc sut;
+  late MockCriptocurrenciesCubitController sut;
   late MockBuildContext context;
 
   setUp(() {
-    sut = MockCriptoCurrencyLoadingBloc();
+    sut = MockCriptocurrenciesCubitController();
     context = MockBuildContext();
   });
 
-  group('Criptocurrencies Bloc', () {
-    blocTest<MockCriptoCurrencyLoadingBloc, CriptoCurrencyListStateEntity>(
+  group('Criptocurrencies Cubit', () {
+    blocTest<CriptocurrenciesCubitController, CriptoCurrencyListStateEntity>(
       'It emits nothing because the first state isLoading (due if statement)',
       build: () => sut,
-      act: (bloc) => bloc.criptocurrenciesLoading(
+      act: (cubit) => cubit.criptocurrenciesLoading(
           criptoCurrencyListStateEntity:
               const CriptoCurrencyListStateEntity(isLoading: true)),
       expect: () => const <CriptoCurrencyListStateEntity>[],
     );
-    blocTest<MockCriptoCurrencyLoadingBloc, CriptoCurrencyListStateEntity>(
+    blocTest<CriptocurrenciesCubitController, CriptoCurrencyListStateEntity>(
       'It emits a list of criptocurrencies',
       build: () => sut,
-      act: (bloc) => bloc.criptocurrenciesLoading(
+      act: (cubit) => cubit.criptocurrenciesLoading(
           criptoCurrencyListStateEntity:
               CriptoCurrencyListStateEntity(listCriptoCurrency: [
         CriptocurrencyEntity(
@@ -54,10 +55,10 @@ void main() {
         ]),
       ],
     );
-    blocTest<CriptoCurrencyLoadingBloc, CriptoCurrencyListStateEntity>(
+    blocTest<CriptocurrenciesCubitController, CriptoCurrencyListStateEntity>(
       'It emits a list of criptocurrencies using criptocurrenciesLoading function',
       build: () => sut,
-      act: (bloc) => bloc.loadNextCriptocurrencyData(context: context),
+      act: (cubit) => cubit.loadNextCriptocurrencyData(context: context),
       expect: () => <CriptoCurrencyListStateEntity>[
         CriptoCurrencyListStateEntity(listCriptoCurrency: [
           CriptocurrencyEntity(

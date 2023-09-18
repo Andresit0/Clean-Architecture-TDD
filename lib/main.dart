@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'config/variables/_variable.lib.dart';
 import 'presentation/controllers/criptocurrencies_bloc/criptocurrencies_bloc.dart';
-import 'presentation/controllers/criptocurrencies_cubit/cubit/criptocurrencies_cubit_cubit.dart';
+import 'presentation/controllers/criptocurrencies_cubit/criptocurrencies_cubit.dart';
 
 const scopeProvider = ProviderScope(child: MyApp()); //Riverpod and Riverpod 2.0
 

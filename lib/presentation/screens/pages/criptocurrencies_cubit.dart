@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../config/variables/_variable.lib.dart';
 import '../../../domain/entities/_entities.lib.dart';
 import '../../../main.dart';
-import '../../controllers/criptocurrencies_cubit/cubit/criptocurrencies_cubit_cubit.dart';
+import '../../controllers/criptocurrencies_cubit/criptocurrencies_cubit.dart';
 import '../_screen.lib.dart';
 
 class CriptocurrenciesCubit extends StatefulWidget {

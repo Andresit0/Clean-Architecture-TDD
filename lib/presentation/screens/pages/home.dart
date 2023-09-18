@@ -31,6 +31,11 @@ class _HomePageState extends State<HomePage> {
               .push(CriptocurrenciesBloc.path),
           child: const Text('Bloc'),
         ),
+        TextButton(
+          onPressed: () => CustomVariables.constRoute.appRouter
+              .push(CriptocurrenciesCubit.path),
+          child: const Text('Cubit'),
+        ),
       ],
     );
   }

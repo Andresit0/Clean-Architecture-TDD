@@ -2,6 +2,7 @@ library config.variables;
 
 import 'dart:async';
 
+import 'package:clean_architecture/presentation/screens/pages/criptocurrencies_cubit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';

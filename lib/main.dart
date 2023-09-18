@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'config/variables/_variable.lib.dart';
 import 'presentation/controllers/criptocurrencies_bloc/criptocurrencies_bloc.dart';
+import 'presentation/controllers/criptocurrencies_cubit/cubit/criptocurrencies_cubit_cubit.dart';
 
 const scopeProvider = ProviderScope(child: MyApp()); //Riverpod and Riverpod 2.0
 
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   static CriptoCurrencyLoadingBloc criptoCurrencyLoadingBloc =
       CriptoCurrencyLoadingBloc();
+  static CriptocurrenciesCubitController criptocurrenciesCubit =
+      CriptocurrenciesCubitController();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Locale>(
@@ -28,6 +31,7 @@ class MyApp extends StatelessWidget {
       builder: (context, snapshotLocale) {
         return MultiBlocProvider(
           providers: [
+            BlocProvider(create: (_) => MyApp.criptocurrenciesCubit),
             BlocProvider(create: (_) => MyApp.criptoCurrencyLoadingBloc),
           ],
           child: MaterialApp.router(

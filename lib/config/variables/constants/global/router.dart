@@ -26,6 +26,10 @@ class CustomConstRoute {
             path: CriptocurrenciesBloc.name,
             builder: (context, state) => const CriptocurrenciesBloc(),
           ),
+          GoRoute(
+            path: CriptocurrenciesCubit.name,
+            builder: (context, state) => const CriptocurrenciesCubit(),
+          ),
         ],
       ),
     ],

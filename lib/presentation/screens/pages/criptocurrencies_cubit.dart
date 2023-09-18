@@ -4,20 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../config/variables/_variable.lib.dart';
 import '../../../domain/entities/_entities.lib.dart';
 import '../../../main.dart';
-import '../../controllers/criptocurrencies_bloc/criptocurrencies_bloc.dart';
+import '../../controllers/criptocurrencies_cubit/cubit/criptocurrencies_cubit_cubit.dart';
 import '../_screen.lib.dart';
 
-class CriptocurrenciesBloc extends StatefulWidget {
-  static String name = 'criptocurrencies_bloc';
-  static const path = '/home/criptocurrencies_bloc';
+class CriptocurrenciesCubit extends StatefulWidget {
+  static String name = 'criptocurrencies_cubit';
+  static const path = '/home/criptocurrencies_cubit';
   static bool reload = true;
-  const CriptocurrenciesBloc({Key? key}) : super(key: key);
+  const CriptocurrenciesCubit({Key? key}) : super(key: key);
 
   @override
-  State<CriptocurrenciesBloc> createState() => _CriptocurrenciesBlocState();
+  State<CriptocurrenciesCubit> createState() => _CriptocurrenciesCubitState();
 }
 
-class _CriptocurrenciesBlocState extends State<CriptocurrenciesBloc> {
+class _CriptocurrenciesCubitState extends State<CriptocurrenciesCubit> {
   @override
   void initState() {
     updateCriptoCurrencyList();
@@ -25,13 +25,13 @@ class _CriptocurrenciesBlocState extends State<CriptocurrenciesBloc> {
   }
 
   updateCriptoCurrencyList() async {
-    MyApp.criptoCurrencyLoadingBloc.loadNextCriptocurrencyData(
+    MyApp.criptocurrenciesCubit.loadNextCriptocurrencyData(
       currencyIDs: CustomVariables.dynCriptocurrencyList.criptocurrencies,
       context: context,
     );
-    while (CriptocurrenciesBloc.reload) {
+    while (CriptocurrenciesCubit.reload) {
       await Future.delayed(const Duration(seconds: 30), () {
-        MyApp.criptoCurrencyLoadingBloc.loadNextCriptocurrencyData(
+        MyApp.criptocurrenciesCubit.loadNextCriptocurrencyData(
           currencyIDs: CustomVariables.dynCriptocurrencyList.criptocurrencies,
           context: context,
         );
@@ -41,7 +41,7 @@ class _CriptocurrenciesBlocState extends State<CriptocurrenciesBloc> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CriptoCurrencyLoadingBloc,
+    return BlocBuilder<CriptocurrenciesCubitController,
         CriptoCurrencyListStateEntity>(
       builder: (context, state) {
         return Scaffold(

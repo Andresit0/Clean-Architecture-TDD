@@ -12,33 +12,35 @@ class MockCriptoCurrencyLoadingBloc
 
 void main() {
   late MockCriptoCurrencyLoadingBloc sut;
+
   setUp(() {
     sut = MockCriptoCurrencyLoadingBloc();
   });
+
   Widget testingWidget() {
     CriptocurrenciesBloc.reload = false;
     MyApp.criptoCurrencyLoadingBloc = sut;
     return const MyApp();
   }
 
+  List<CriptoCurrencyListStateEntity> criptoCurrencyListStateEntity = [
+    const CriptoCurrencyListStateEntity(isLoading: true),
+    CriptoCurrencyListStateEntity(listCriptoCurrency: [
+      CriptocurrencyEntity(
+          name: 'Bitcoin', symbol: 'btc', price: 26000, restError: null),
+    ]),
+  ];
+
   group('Testing bloc page', () {
     testWidgets(
       "Testing that loading widget is showed",
       (WidgetTester tester) async {
+        int index = 0;
         whenListen(
           sut,
-          Stream.fromIterable([
-            const CriptoCurrencyListStateEntity(isLoading: true),
-            const CriptoCurrencyListStateEntity(isLoading: true),
-            const CriptoCurrencyListStateEntity(isLoading: true),
-            CriptoCurrencyListStateEntity(listCriptoCurrency: [
-              CriptocurrencyEntity(
-                  name: 'Bitcoin',
-                  symbol: 'btc',
-                  price: 26000,
-                  restError: null),
-            ]),
-          ]),
+          Stream.periodic(const Duration(seconds: 4), (_) {
+            return criptoCurrencyListStateEntity[index++];
+          }).take(2),
           initialState: const CriptoCurrencyListStateEntity(isLoading: true),
         );
         await tester.runAsync(() async {
@@ -46,7 +48,7 @@ void main() {
           final Finder fab = find.bySemanticsLabel('Bloc');
           await tester.tap(fab);
           await tester.pump();
-          await tester.pump(const Duration(milliseconds: 1000));
+          await tester.pump(const Duration(milliseconds: 2000));
           expect(find.byKey(const Key('circularProgressIndicator')),
               findsOneWidget);
         });
@@ -56,9 +58,6 @@ void main() {
       whenListen(
         sut,
         Stream.fromIterable([
-          const CriptoCurrencyListStateEntity(isLoading: true),
-          const CriptoCurrencyListStateEntity(isLoading: true),
-          const CriptoCurrencyListStateEntity(isLoading: true),
           CriptoCurrencyListStateEntity(listCriptoCurrency: [
             CriptocurrencyEntity(
                 name: 'Bitcoin', symbol: 'btc', price: 26000, restError: null),

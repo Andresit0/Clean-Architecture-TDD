@@ -25,8 +25,6 @@ void main() {
 
   List<CriptoCurrencyListStateEntity> criptoCurrencyListStateEntity = [
     const CriptoCurrencyListStateEntity(isLoading: true),
-    const CriptoCurrencyListStateEntity(isLoading: true),
-    const CriptoCurrencyListStateEntity(isLoading: true),
     CriptoCurrencyListStateEntity(listCriptoCurrency: [
       CriptocurrencyEntity(
           name: 'Bitcoin', symbol: 'btc', price: 26000, restError: null),
@@ -40,9 +38,9 @@ void main() {
         int index = 0;
         whenListen(
           sut,
-          Stream.periodic(const Duration(seconds: 4), (i) {
+          Stream.periodic(const Duration(seconds: 4), (_) {
             return criptoCurrencyListStateEntity[index++];
-          }).take(4),
+          }).take(2),
           initialState: const CriptoCurrencyListStateEntity(isLoading: true),
         );
         await tester.runAsync(() async {
@@ -60,9 +58,6 @@ void main() {
       whenListen(
         sut,
         Stream.fromIterable([
-          const CriptoCurrencyListStateEntity(isLoading: true),
-          const CriptoCurrencyListStateEntity(isLoading: true),
-          const CriptoCurrencyListStateEntity(isLoading: true),
           CriptoCurrencyListStateEntity(listCriptoCurrency: [
             CriptocurrencyEntity(
                 name: 'Bitcoin', symbol: 'btc', price: 26000, restError: null),

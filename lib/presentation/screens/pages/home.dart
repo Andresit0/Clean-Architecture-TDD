@@ -26,6 +26,11 @@ class _HomePageState extends State<HomePage> {
               .push(CriptocurrenciesRiverpod2PageCtrl.path),
           child: const Text('Riverpod 2.0'),
         ),
+        TextButton(
+          onPressed: () => CustomVariables.constRoute.appRouter
+              .push(CriptocurrenciesBloc.path),
+          child: const Text('Bloc'),
+        ),
       ],
     );
   }

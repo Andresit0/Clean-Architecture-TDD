@@ -22,6 +22,10 @@ class CustomConstRoute {
             builder: (context, state) =>
                 const CriptocurrenciesRiverpod2PageCtrl(),
           ),
+          GoRoute(
+            path: CriptocurrenciesBloc.name,
+            builder: (context, state) => const CriptocurrenciesBloc(),
+          ),
         ],
       ),
     ],

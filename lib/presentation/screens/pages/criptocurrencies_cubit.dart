@@ -26,7 +26,6 @@ class _CriptocurrenciesCubitState extends State<CriptocurrenciesCubit> {
 
   updateCriptoCurrencyList() async {
     MyApp.criptocurrenciesCubit.loadNextCriptocurrencyData(
-      currencyIDs: CustomVariables.dynCriptocurrencyList.criptocurrencies,
       context: context,
     );
     while (CriptocurrenciesCubit.reload) {

@@ -6,11 +6,7 @@ abstract class CriptoCurrencyLoadingEvent {}
 class LoadNextCriptocurrencyData extends CriptoCurrencyLoadingEvent {
   final List<String>? currencyIDs;
   final BuildContext context;
-  final CriptocurrencyRepositoryImp? criptocurrencyRepositoryImp;
-  LoadNextCriptocurrencyData(
-      {this.currencyIDs,
-      required this.context,
-      this.criptocurrencyRepositoryImp});
+  LoadNextCriptocurrencyData({this.currencyIDs, required this.context});
 }
 
 class CriptocurrenciesLoading extends CriptoCurrencyLoadingEvent {

@@ -13,9 +13,8 @@ class CriptocurrenciesCubitController
       : super(const CriptoCurrencyListStateEntity(isLoading: true));
 
   void loadNextCriptocurrencyData({
-    required List<String>? currencyIDs,
+    List<String>? currencyIDs,
     required BuildContext context,
-    CriptocurrencyRepositoryImp? criptocurrencyRepositoryImp,
   }) async {
     final criptocurrencyRepositoryImp =
         CriptocurrencyRepositoryImp(CriptocurrencyDatasourceImp());
@@ -25,11 +24,11 @@ class CriptocurrenciesCubitController
           CustomVariables.constCriptocurrencyList.criptocurrenciesMostKnowledge,
       context: context,
     );
-    MyApp.criptoCurrencyLoadingBloc.criptocurrenciesLoading(
+    MyApp.criptocurrenciesCubit.criptocurrenciesLoading(
         criptoCurrencyListStateEntity:
             const CriptoCurrencyListStateEntity(isLoading: true));
     await Future.delayed(const Duration(seconds: 4), () {
-      MyApp.criptoCurrencyLoadingBloc
+      MyApp.criptocurrenciesCubit
           .criptocurrenciesLoading(criptoCurrencyListStateEntity: response);
     });
   }

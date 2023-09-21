@@ -15,6 +15,7 @@ import '../controllers/criptocurrencies_riverpod/_criptocurrencies_riverpod.lib.
 import '../controllers/criptocurrencies_riverpod_2.0/criptocurrencies_riverpod2.0.dart';
 import 'pages/criptocurrencies_bloc.dart';
 import 'pages/criptocurrencies_cubit.dart';
+import 'pages/criptocurrencies_provider.dart';
 
 part 'pages/criptocurrencies_riverpod.dart';
 part 'pages/criptocurrencies_riverpod_2.0.dart';

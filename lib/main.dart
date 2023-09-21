@@ -5,10 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart' as provider;
 
 import 'config/variables/_variable.lib.dart';
 import 'presentation/controllers/criptocurrencies_bloc/criptocurrencies_bloc.dart';
 import 'presentation/controllers/criptocurrencies_cubit/criptocurrencies_cubit.dart';
+import 'presentation/controllers/criptocurrencies_provider/criptocurrencies_provider.dart';
 
 const scopeProvider = ProviderScope(child: MyApp()); //Riverpod and Riverpod 2.0
 
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       CriptoCurrencyLoadingBloc();
   static CriptocurrenciesCubitController criptocurrenciesCubit =
       CriptocurrenciesCubitController();
+  static CriptocurrenciesProviderController criptocurrenciesProviderController =
+      CriptocurrenciesProviderController();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Locale>(
@@ -34,21 +38,27 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => MyApp.criptocurrenciesCubit),
             BlocProvider(create: (_) => MyApp.criptoCurrencyLoadingBloc),
           ],
-          child: MaterialApp.router(
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
+          child: provider.MultiProvider(
+            providers: [
+              provider.ChangeNotifierProvider(
+                  create: (_) => criptocurrenciesProviderController),
             ],
-            supportedLocales: const [
-              Locale('en', ''),
-              Locale('es', ''),
-            ],
-            locale: snapshotLocale.data,
-            routerConfig: CustomVariables.constRoute.appRouter,
-            debugShowCheckedModeBanner: false,
-            theme: CustomVariables.constThemeApp.getTheme(),
+            child: MaterialApp.router(
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('en', ''),
+                Locale('es', ''),
+              ],
+              locale: snapshotLocale.data,
+              routerConfig: CustomVariables.constRoute.appRouter,
+              debugShowCheckedModeBanner: false,
+              theme: CustomVariables.constThemeApp.getTheme(),
+            ),
           ),
         );
       },

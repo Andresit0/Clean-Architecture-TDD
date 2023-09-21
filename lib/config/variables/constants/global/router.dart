@@ -34,6 +34,10 @@ class CustomConstRoute {
             path: CriptocurrenciesProviderPage.name,
             builder: (context, state) => const CriptocurrenciesProviderPage(),
           ),
+          GoRoute(
+            path: CriptocurrenciesStreamPage.name,
+            builder: (context, state) => const CriptocurrenciesStreamPage(),
+          ),
         ],
       ),
     ],

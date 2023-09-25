@@ -50,3 +50,11 @@ dev:riverpod_lint
     ```import 'package:mocktail/mocktail.dart'; ```
 
     ```class MockClassName extends Mock implements MockClassName {}```
+
+5. To run integration test (one by one) edit and run:
+
+Mac:
+    ```sh integrationTestRunner.sh```
+
+Linux:
+    ```./integrationTestRunner.sh```
